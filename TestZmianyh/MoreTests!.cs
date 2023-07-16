@@ -1,68 +1,49 @@
+using ClassEmployee;
+using System.Security.Cryptography;
+using System.Threading.Tasks.Sources;
+
 namespace TestZmianyh
 {
     public class Tests
     {
         [Test]
-        public void TestVar()
+        public void AddingPositiveGrades()
         {
-            var v1 = 1;
-            var v2 = 1;
-            Assert.AreEqual(v1, v2);
+            var emp = new Employee("Aboba","Abobes");
+            emp.AddScore(5);
+            emp.AddScore(7);
+            emp.AddScore(3);
+            var statistic = emp.GetAnEstimate();
+            Assert.AreEqual(15, statistic.Suma);
+            Assert.AreEqual(7, statistic.Max);
+            Assert.AreEqual(3, statistic.Min);
+            Assert.AreEqual(5, statistic.Average);
         }
         [Test]
-        public void TestInt()
+        public void AddingNegativeGrades()
         {
-            int liczba1 = 1;
-            int liczba2 = 1;
-            Assert.AreEqual(liczba1, liczba2);
+            var emp = new Employee("Aboba", "Abobes");
+            emp.AddScore(-5);
+            emp.AddScore(-7);
+            emp.AddScore(-3);
+            var statistic = emp.GetAnEstimate();
+            Assert.AreEqual(-15, statistic.Suma);
+            Assert.AreEqual(-3, statistic.Max);
+            Assert.AreEqual(-7, statistic.Min);
+            Assert.AreEqual(-5, statistic.Average);
         }
         [Test]
-        public void TestString()
+        public void AddingGrades()
         {
-            string str1 = "a";
-            string str2 = "a";
-            Assert.AreEqual(str1, str2);
-        }
-        [Test]
-        public void TestBool()
-        {
-            bool bl1 = false;
-            bool bl2 = false;
-            Assert.AreEqual(bl1, bl2);
-        }
-        [Test]
-        public void Test1Double()
-        {
-            double dob1 = 1.8;
-            double dob2 = 1.8;
-            Assert.AreEqual(dob1, dob2);
-        }
-        [Test]
-        public void TestChar()
-        {
-            char c1 = 'q';
-            char c2 = 'q';
-            Assert.AreEqual(c1, c2);
-        }
-        [Test]
-        public void TestFor()
-        {
-            int lc = 0;
-            for (int i = 0; i < 10; i++)
-            {
-                lc++;
-            }
-            Assert.AreEqual(10, lc);
-        }
-        [Test]
-        public void TestConvertIntInCharAndDouble()
-        {
-            int lc = 1;
-            char ch = Convert.ToChar(lc);
-            byte b = Convert.ToByte(ch);
-            int i = Convert.ToInt32(b);
-
-            Assert.AreEqual(1, i);
+            var emp = new Employee("Aboba", "Abobes");
+            emp.AddScore(-5);
+            emp.AddScore(7);
+            emp.AddScore(-3);
+            var statistic = emp.GetAnEstimate();
+            Assert.AreEqual(-1, statistic.Suma);
+            Assert.AreEqual(7, statistic.Max);
+            Assert.AreEqual(-5, statistic.Min);
+            Assert.AreEqual(-0.33, Math.Round(statistic.Average, 2));
         }
     }
 }

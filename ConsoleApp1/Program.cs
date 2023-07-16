@@ -36,41 +36,27 @@ var pi = Math.PI;               // czyslo pi, mozna tak ja otszymac
 ctrl + R + R   ->   morzna zmienic cos (napsz. nazwe zmiannej) w calem plicie
 ctrl + k + d   ->   wyruwnia cok
 ctrl + .   ->   napisze morzliwy sposub rozwiezywania 
+ctrl + k + u   ->
+ctrl + c   ->
 */
 
-using classEmployee;
+using ClassEmployee;
+using ClassStatistics;
 
-Employee user1 = new Employee("Marek ", "Pomidor", "23 lat");
-Employee user2 = new Employee("Garek ", "Szliwa", "31 lat");
-Employee user3 = new Employee("Darek ", "Limon", "19 lat");
+var emp =new Employee("A", "s");
+emp.AddScore(1);
+emp.AddScore(5);
+emp.AddScore(8);
+emp.AddScore(2);
 
-user1.AddScore(9);
-user1.AddScore(4);
-user1.AddScore(2);
+var stats = emp.GetAnEstimate();
 
+Console.WriteLine($"Average: {stats.Average:N2}");   // pokazuje tylko 2 liczby po ','
+Console.WriteLine($"Max: {stats.Max}");
+Console.WriteLine($"Min: {stats.Min}");
+Console.WriteLine($"Suma: {stats.Suma}");
 
-user2.AddScore(2);
-user2.AddScore(7);
-user2.AddScore(10);
-
-
-user3.AddScore(4);
-user3.AddScore(6);
-user3.AddScore(10);
-
-List<Employee> users = new List<Employee>()
-{
-    user1, user2, user3
-};
-int maxResult = -1;
-Employee userMaxResult = null;
-
-foreach (var user in users)
-{
-    if (user.Result > maxResult)                      // sprawdza czy suma z "user1/2/3" wienksza niz "maxResult" (jeszli bedzie "truy" to w zmianu "maxResult" bedzie zapisane dany liciebnika co jest wienkszy)
-    {
-        userMaxResult = user;                         // zmienia znacienia "null" na cos inne
-        maxResult = user.Result;                      // zmiana mniejsego liciebnika na wiengszy 
-    }
+void SetSth(Statistics stats)    // pszekazujemy tylko referencje (wymazac z pamienci jest niemozliwe)
+{                           
+    stats = new Statistics();    // "zamazali", ale jest biezpiecne
 }
-Console.WriteLine("Najlepszy pracownikiem jest " + userMaxResult.Imie + userMaxResult.Nazwisko + ", on ma " + userMaxResult.Wiek + "!");

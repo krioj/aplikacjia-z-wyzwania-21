@@ -1,31 +1,54 @@
-﻿namespace classEmployee
+﻿using ClassStatistics;
+
+namespace ClassEmployee
 {
     public class Employee
     {
-        public static string STIK = "ksaf";        // kreacja statycznej zmiannej, "static" mozna wykorzystac i dla konstruktora (ale wteda bede pracowac tylko w klasie)
-        public List<int> score = new List<int>();
-
-        public Employee(string imie, string nazwisko, string wiek)                     // stworzyl konstruktor
+        private List<int> score = new List<int>();
+        
+        public Employee(string imie, string Nazwisko)
         {
-            this.Imie = imie;
-            this.Nazwisko = nazwisko;
-            this.Wiek = wiek;
+            this.Name = imie;
+            this.Surname = Nazwisko;
         }
-        public string Imie { get; private set; }
-        public string Nazwisko { get; private set; }
-        public string Wiek { get; private set; }
 
-        public int Result
+        public string Name { get; private set; }
+        public string Surname { get; private set; }
+        
+        public void AddScore(int name)
         {
-            get
+            this.score.Add(name);
+        }//       /\
+         //    [рахунок]
+        public Statistics GetAnEstimate()         // Metoda jaka zwruci wypelniony obiekt z statystykami
+        {
+            var oceny = new Statistics();
+            oceny.Average = 0;              // Avarage [середній], srednia wartosc
+            oceny.Max = float.MinValue;
+            oceny.Min = float.MaxValue;
+            oceny.Suma = 0;
+            
+            foreach (var grade in this.score)
             {
-                return this.score.Sum();
+                oceny.Max = Math.Max(oceny.Max, grade);
+                oceny.Min = Math.Min(oceny.Min, grade);
+                oceny.Average += grade;
+                oceny.Suma += grade;
             }
-        }                                                                                               // potszeba dodacz liczbe (jusz dodal "5")
-        //                                                                                                                   \/
-        public void AddScore(int number)    // dodaje punkty uzytkownikowi (wykorzystac morzna tak:    JakasZmianna.AddScore(5))
-        {
-            this.score.Add(number);         // dodaje liczby do zmianna "score"                 
+
+            oceny.Average = oceny.Average /= this.score.Count;
+            oceny.Suma = oceny.Suma = this.score.Sum();
+            return oceny;
         }
+
+
+
+
+
+
+
+
+
+
     }
 }

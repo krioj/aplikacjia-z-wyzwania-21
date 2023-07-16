@@ -5,7 +5,10 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wyzwanie21dn", "ConsoleApp1\Wyzwanie21dn.csproj", "{5ED05069-4BF2-4DF9-8CA7-A5FFF9DE3574}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWyzwanie21dn", "TestZmianyh\TestWyzwanie21dn.csproj", "{151B3167-5CF9-4B05-A884-9BFCB6788A42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWyzwanie21dn", "TestZmianyh\TestWyzwanie21dn.csproj", "{151B3167-5CF9-4B05-A884-9BFCB6788A42}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5ED05069-4BF2-4DF9-8CA7-A5FFF9DE3574} = {5ED05069-4BF2-4DF9-8CA7-A5FFF9DE3574}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
