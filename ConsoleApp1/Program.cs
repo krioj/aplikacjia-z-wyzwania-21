@@ -43,7 +43,7 @@ ctrl + c   ->
 using ClassEmployee;
 using ClassStatistics;
 
-var emp =new Employee("A", "s");
+var emp =new Employee("Andzej", "Superski");
 emp.AddScore(1);
 emp.AddScore(5);
 emp.AddScore(8);
@@ -54,7 +54,7 @@ var stats = emp.GetAnEstimate();
 Console.WriteLine($"Average: {stats.Average:N2}");   // pokazuje tylko 2 liczby po ','
 Console.WriteLine($"Max: {stats.Max}");
 Console.WriteLine($"Min: {stats.Min}");
-Console.WriteLine($"Suma: {stats.Suma}");
+Console.WriteLine($"Suma: {stats.Sum}");
 
 void SetSth(Statistics stats)    // pszekazujemy tylko referencje (wymazac z pamienci jest niemozliwe)
 {                           

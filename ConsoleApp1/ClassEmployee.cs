@@ -6,39 +6,39 @@ namespace ClassEmployee
     {
         private List<int> score = new List<int>();
         
-        public Employee(string imie, string Nazwisko)
+        public Employee(string name, string surname)
         {
-            this.Name = imie;
-            this.Surname = Nazwisko;
+            this.Name = name;
+            this.Surname = surname;
         }
 
         public string Name { get; private set; }
         public string Surname { get; private set; }
         
-        public void AddScore(int name)
+        public void AddScore(int number)
         {
-            this.score.Add(name);
+            this.score.Add(number);
         }//       /\
          //    [рахунок]
         public Statistics GetAnEstimate()         // Metoda jaka zwruci wypelniony obiekt z statystykami
         {
-            var oceny = new Statistics();
-            oceny.Average = 0;              // Avarage [середній], srednia wartosc
-            oceny.Max = float.MinValue;
-            oceny.Min = float.MaxValue;
-            oceny.Suma = 0;
+            var statistic = new Statistics();
+            statistic.Average = 0;              // Avarage [середній], srednia wartosc
+            statistic.Max = float.MinValue;
+            statistic.Min = float.MaxValue;
+            statistic.Sum = 0;
             
             foreach (var grade in this.score)
             {
-                oceny.Max = Math.Max(oceny.Max, grade);
-                oceny.Min = Math.Min(oceny.Min, grade);
-                oceny.Average += grade;
-                oceny.Suma += grade;
+                statistic.Max = Math.Max(statistic.Max, grade);
+                statistic.Min = Math.Min(statistic.Min, grade);
+                statistic.Average += grade;
+                statistic.Sum += grade;
             }
 
-            oceny.Average = oceny.Average /= this.score.Count;
-            oceny.Suma = oceny.Suma = this.score.Sum();
-            return oceny;
+            statistic.Average = statistic.Average /= this.score.Count;
+            statistic.Sum = statistic.Sum = this.score.Sum();
+            return statistic;
         }
 
 

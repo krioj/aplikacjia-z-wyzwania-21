@@ -13,11 +13,11 @@ namespace TestZmianyh
             emp.AddScore(5);
             emp.AddScore(7);
             emp.AddScore(3);
-            var statistic = emp.GetAnEstimate();
-            Assert.AreEqual(15, statistic.Suma);
-            Assert.AreEqual(7, statistic.Max);
-            Assert.AreEqual(3, statistic.Min);
-            Assert.AreEqual(5, statistic.Average);
+            var stat = emp.GetAnEstimate();
+            Assert.AreEqual(15, stat.Sum);
+            Assert.AreEqual(7, stat.Max);
+            Assert.AreEqual(3, stat.Min);
+            Assert.AreEqual(5, stat.Average);
         }
         [Test]
         public void AddingNegativeGrades()
@@ -26,11 +26,11 @@ namespace TestZmianyh
             emp.AddScore(-5);
             emp.AddScore(-7);
             emp.AddScore(-3);
-            var statistic = emp.GetAnEstimate();
-            Assert.AreEqual(-15, statistic.Suma);
-            Assert.AreEqual(-3, statistic.Max);
-            Assert.AreEqual(-7, statistic.Min);
-            Assert.AreEqual(-5, statistic.Average);
+            var stat = emp.GetAnEstimate();
+            Assert.AreEqual(-15, stat.Sum);
+            Assert.AreEqual(-3, stat.Max);
+            Assert.AreEqual(-7, stat.Min);
+            Assert.AreEqual(-5, stat.Average);
         }
         [Test]
         public void AddingGrades()
@@ -39,11 +39,11 @@ namespace TestZmianyh
             emp.AddScore(-5);
             emp.AddScore(7);
             emp.AddScore(-3);
-            var statistic = emp.GetAnEstimate();
-            Assert.AreEqual(-1, statistic.Suma);
-            Assert.AreEqual(7, statistic.Max);
-            Assert.AreEqual(-5, statistic.Min);
-            Assert.AreEqual(-0.33, Math.Round(statistic.Average, 2));
+            var stat = emp.GetAnEstimate();
+            Assert.AreEqual(-1, stat.Sum);
+            Assert.AreEqual(7, stat.Max);
+            Assert.AreEqual(-5, stat.Min);
+            Assert.AreEqual(-0.33, Math.Round(stat.Average, 2));
         }
     }
 }
