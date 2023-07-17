@@ -38,16 +38,22 @@ ctrl + k + d   ->   wyruwnia cok
 ctrl + .   ->   napisze morzliwy sposub rozwiezywania 
 ctrl + k + u   ->
 ctrl + c   ->
+ctrl + d   ->   kopijuje riadok ktury byl wcieszniej
 */
+/* Zadanie domowe: 1. Stworzyc metody, jakie dodaja oceny, ale z innymi typami danyh (string, int, float, double, long, char, bute, )*/
 
 using ClassEmployee;
 using ClassStatistics;
-
 var emp =new Employee("Andzej", "Superski");
-emp.AddScore(1);
-emp.AddScore(5);
-emp.AddScore(8);
-emp.AddScore(2);
+emp.AddScore("5");
+emp.AddScore(5.6);
+emp.AddScore(08.000000001);
+emp.AddScore(04);
+emp.AddScore("1.f");
+emp.AddScore("");
+emp.AddScore("ku");
+emp.AddScore(999);
+emp.AddScore(-0);
 
 var stats = emp.GetAnEstimate();
 
