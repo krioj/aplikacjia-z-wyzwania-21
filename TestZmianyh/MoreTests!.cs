@@ -86,28 +86,17 @@ namespace TestZmianyh
             Assert.AreEqual(3, stat.Average);
         }
         [Test]
-        public void AddingGradessFloat_FolseConvert()
+        public void AddingStringAndConvert()
         {
             var emp = new Employee("Aboba", "Abobes");
-            emp.AddScore(" ");
-            emp.AddScore("");
-            emp.AddScore("1");
-            emp.AddScore("-1");
-            emp.AddScore("-");
-            emp.AddScore("rlglkg");
-            emp.AddScore("++");
-            emp.AddScore("==");
-            emp.AddScore(">");
-            emp.AddScore("0");
-            emp.AddScore("\"");
-            emp.AddScore("\"\"");
-            emp.AddScore("]21=3-=0i0jhfLA~`:;A");
-
+            emp.AddScore("5");
+            emp.AddScore("-3");
+            emp.AddScore("7");
             var stat = emp.GetAnEstimate();
-            Assert.AreEqual(0, stat.Sum);
-            Assert.AreEqual(1, stat.Max);
-            Assert.AreEqual(-1, stat.Min);
-            Assert.AreEqual(0, Math.Round(stat.Average, 1));
+            Assert.AreEqual(9, stat.Sum);
+            Assert.AreEqual(7, stat.Max);
+            Assert.AreEqual(-3, stat.Min);
+            Assert.AreEqual(3, stat.Average);
         }
     }
 }

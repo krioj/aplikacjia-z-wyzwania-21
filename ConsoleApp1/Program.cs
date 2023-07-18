@@ -44,25 +44,30 @@ ctrl + d   ->   kopijuje riadok ktury byl wcieszniej
 
 using ClassEmployee;
 using ClassStatistics;
-var emp =new Employee("Andzej", "Superski");
-emp.AddScore("5");
-emp.AddScore(5.6);
-emp.AddScore(08.000000001);
-emp.AddScore(04);
-emp.AddScore("1.f");
-emp.AddScore("");
-emp.AddScore("ku");
-emp.AddScore(999);
-emp.AddScore(-0);
+Random random = new Random();
+var emp = new Employee("Andzej", "Superski");
+for (int i = 0; i < 5; i++)
+{
+    emp.AddScore(random.Next(1, 11));
+}
 
 var stats = emp.GetAnEstimate();
-
+emp.PrintData();
 Console.WriteLine($"Average: {stats.Average:N2}");   // pokazuje tylko 2 liczby po ','
 Console.WriteLine($"Max: {stats.Max}");
 Console.WriteLine($"Min: {stats.Min}");
 Console.WriteLine($"Suma: {stats.Sum}");
 
-void SetSth(Statistics stats)    // pszekazujemy tylko referencje (wymazac z pamienci jest niemozliwe)
-{                           
-    stats = new Statistics();    // "zamazali", ale jest biezpiecne
+do
+{
+    Console.WriteLine("odgadaj liczbe Max");
+} while (Convert.ToSingle(Console.ReadLine()) != stats.Max);
+
+Console.WriteLine("odgadaj liczbe Min (jest 3 sproby)");
+int a = 3;
+while (Convert.ToSingle(Console.ReadLine()) != stats.Min && a > 1)
+{
+    a--;
+    Console.WriteLine($"zostalo {a} sproby");
 }
+
