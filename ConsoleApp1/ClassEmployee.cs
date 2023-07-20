@@ -6,7 +6,7 @@ namespace ClassEmployee
     {
         private List<float> score = new List<float>();
         
-        public Employee(string name, string surname)            // 
+        public Employee(string name, string surname)
         {
             this.Name = name;
             this.Surname = surname;
