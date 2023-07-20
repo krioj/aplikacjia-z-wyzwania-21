@@ -39,6 +39,7 @@ ctrl + .   ->   napisze morzliwy sposub rozwiezywania
 ctrl + k + u   ->
 ctrl + c   ->
 ctrl + d   ->   kopijuje riadok ktury byl wcieszniej
+Resalt:N2   ->   pokazuje tylko 2 liczby po ",", lub Math.Round(Resalt:N2)
 */
 
 namespace ClassStatistics

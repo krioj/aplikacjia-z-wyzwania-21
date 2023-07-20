@@ -5,7 +5,6 @@ namespace ClassEmployee
     public class Employee
     {
         private List<float> score = new List<float>();
-        
         public Employee(string name, string surname)
         {
             this.Name = name;
@@ -13,7 +12,6 @@ namespace ClassEmployee
         }
         public string Name { get; private set; }                // tworzenia 2-h zmianyh dla clasa 
         public string Surname { get; private set; }
-        
         
         public void AddScore(float number)
         {
@@ -29,7 +27,6 @@ namespace ClassEmployee
         }
         public void AddScore(string number)
         {
-
             if (float.TryParse(number, out float fl) && float.Parse(number) >= 0 && float.Parse(number) <= 100)
             {
                 this.score.Add(fl);
@@ -64,7 +61,6 @@ namespace ClassEmployee
                 }
             }
         }
-        
         public Statistics GetAnEstimate()         // Metoda jaka zwruci wypelniony obiekt z statystykami
         {
             var statistic = new Statistics();
@@ -72,30 +68,27 @@ namespace ClassEmployee
             statistic.Max = float.MinValue;
             statistic.Min = float.MaxValue;
             statistic.Sum = 0;
-            
             foreach (var grade in this.score)
             {
                 statistic.Max = Math.Max(statistic.Max, grade);
                 statistic.Min = Math.Min(statistic.Min, grade);
                 statistic.Average += grade;
                 statistic.Sum += grade;
-                
             }
             statistic.Average = statistic.Average /= this.score.Count;
             statistic.Sum = statistic.Sum = this.score.Sum();
-
-            switch (statistic.Average)                 // 
+            switch (statistic.Average)
             {
-                case var average when average >= 80:   
+                case var average when average >= 81:   
                     statistic.AverageLetter = 'A';     
                     break;
-                case var average when average >= 60:
+                case var average when average >= 61:
                     statistic.AverageLetter = 'B';
                     break;
-                case var average when average >= 40:
+                case var average when average >= 41:
                     statistic.AverageLetter = 'C';
                     break;
-                case var average when average >= 20:
+                case var average when average >= 21:
                     statistic.AverageLetter = 'D';
                     break;
                 default:
@@ -104,6 +97,5 @@ namespace ClassEmployee
             }
             return statistic;
         }
-        
     }
 }
