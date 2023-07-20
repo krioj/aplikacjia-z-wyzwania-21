@@ -1,7 +1,4 @@
 using ClassEmployee;
-using System.Data.SqlTypes;
-using System.Security.Cryptography;
-using System.Threading.Tasks.Sources;
 
 namespace TestZmianyh
 {

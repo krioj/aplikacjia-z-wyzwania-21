@@ -40,34 +40,15 @@ ctrl + k + u   ->
 ctrl + c   ->
 ctrl + d   ->   kopijuje riadok ktury byl wcieszniej
 */
-/* Zadanie domowe: 1. Stworzyc metody, jakie dodaja oceny, ale z innymi typami danyh (string, int, float, double, long, char, bute, )*/
 
 using ClassEmployee;
 using ClassStatistics;
-Random random = new Random();
-var emp = new Employee("Andzej", "Superski");
-for (int i = 0; i < 5; i++)
-{
-    emp.AddScore(random.Next(1, 11));
-}
+
+
+var emp = new Employee("Artem ", "Kostek");
 
 var stats = emp.GetAnEstimate();
-emp.PrintData();
-Console.WriteLine($"Average: {stats.Average:N2}");   // pokazuje tylko 2 liczby po ','
+Console.WriteLine($"Average: {stats.Average}");   // pokazuje tylko 2 liczby po ','
 Console.WriteLine($"Max: {stats.Max}");
 Console.WriteLine($"Min: {stats.Min}");
 Console.WriteLine($"Suma: {stats.Sum}");
-
-do
-{
-    Console.WriteLine("odgadaj liczbe Max");
-} while (Convert.ToSingle(Console.ReadLine()) != stats.Max);
-
-Console.WriteLine("odgadaj liczbe Min (jest 3 sproby)");
-int a = 3;
-while (Convert.ToSingle(Console.ReadLine()) != stats.Min && a > 1)
-{
-    a--;
-    Console.WriteLine($"zostalo {a} sproby");
-}
-

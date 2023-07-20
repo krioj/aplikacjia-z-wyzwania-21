@@ -1,6 +1,4 @@
 ﻿using ClassStatistics;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks.Sources;
 
 namespace ClassEmployee
 {
@@ -8,18 +6,17 @@ namespace ClassEmployee
     {
         private List<float> score = new List<float>();
         
-        public Employee(string name, string surname)
+        public Employee(string name, string surname)            // 
         {
             this.Name = name;
             this.Surname = surname;
         }
-        
-        public string Name { get; private set; }
+        public string Name { get; private set; }                // tworzenia 2-h zmianyh dla clasa 
         public string Surname { get; private set; }
         
         public void AddScore(float number)
         {
-            if(number >= -10 && number <= 10)
+            if(number >= 0 && number <= 100)
             {
                 this.score.Add(number);
             }
@@ -31,16 +28,15 @@ namespace ClassEmployee
          //    [рахунок]
         public void AddScore(string number)
         {
-            if (float.TryParse(number, out float resalt) && int.Parse(number) >= -10 && int.Parse(number) <= 10)
+            if (float.TryParse(number, out float resalt) && int.Parse(number) >= 0 && int.Parse(number) <= 100)
             {
-                this.AddScore(resalt);
+                this.score.Add(resalt);
             }
             else
             {
-                Console.WriteLine($"conversion \"string\" ({number}) is not possible or this number is out of range");
+                Console.WriteLine("this number is out of range");
             }
         }
-        
         public Statistics GetAnEstimate()         // Metoda jaka zwruci wypelniony obiekt z statystykami
         {
             var statistic = new Statistics();
@@ -57,18 +53,9 @@ namespace ClassEmployee
                 statistic.Sum += grade;
                 
             }
-
-
             statistic.Average = statistic.Average /= this.score.Count;
             statistic.Sum = statistic.Sum = this.score.Sum();
             return statistic;
-        }
-        public void PrintData()                         //napisze po kolejce co jest w liscie score
-        {
-            foreach (float data in score)
-            {
-                Console.WriteLine(data);
-            }
         }
         
     }
