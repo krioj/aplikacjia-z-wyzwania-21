@@ -20,6 +20,7 @@ do
     }
     else
     {
+        
         Console.Write($"zle wpisana ilosc ({a})");
     }
     var stats = emp.GetAnEstimate();

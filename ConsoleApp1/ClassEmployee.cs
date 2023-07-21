@@ -17,12 +17,14 @@ namespace ClassEmployee
         {
             if (number >= 0 && number <= 100)
             {
-                this.score.Add(number);
+                this.score.Add(number);                         // potencijno niebiezpiecny kod (morze byc blad)
             }//       /\
-         //    [рахунок]
+//                 [рахунок]
             else
             {
-                Console.WriteLine("wybrana ocena nie istnieje");
+//        [Wrzuc] or [вкинути]
+//                \/
+                throw new Exception("wybrana ocena nie istnieje");  // co jest w "", bedzie zapisane w zmianu "Exception.Message"
             }
         }
         public void AddScore(string number)
@@ -56,8 +58,7 @@ namespace ClassEmployee
                         this.score.Add(20);
                         break;
                     default:
-                        Console.WriteLine("wpisana ocena ne istnieje lub niemorzlywo wykonwertowac");
-                        break;
+                        throw new Exception("wybrana ocena nie istnieje");
                 }
             }
         }
