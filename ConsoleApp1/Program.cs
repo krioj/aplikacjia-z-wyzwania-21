@@ -9,27 +9,32 @@ Console.WriteLine("-----------------------------------------------------");
 do
 {
     Console.WriteLine("ile ocen dodamy?");
-
     if (int.TryParse(Console.ReadLine(), out int a))
     {
         Console.WriteLine("musis podac liczbe lub litere dla karzdej oceny");
-        for (int i = 0; i < a; i++)
+        try
         {
-            emp.AddScore(Console.ReadLine());
+            for (int i = 0; i < a; i++)
+            {
+                emp.AddScore(Console.ReadLine());
+            }//[bled], [помилка]
+        }//          \/
+        catch (Exception)
+        {
+            Console.WriteLine("Zle podana ocena");              // 
         }
     }
     else
     {
-        
-        Console.Write($"zle wpisana ilosc ({a})");
+        Console.WriteLine($"zle wpisana ilosc ({a})");
     }
     var stats = emp.GetAnEstimate();
+
     Console.WriteLine($"Szrednia ocena: {stats.Average:N2}");   // pokazuje tylko 2 liczby po ','
+    Console.WriteLine($"Szrebnia ocen w literah: {stats.AverageLetter}");
     Console.WriteLine($"Maksymalna ocena: {stats.Max}");
     Console.WriteLine($"Minimalna ocena: {stats.Min}");
     Console.WriteLine($"Suma ocen: {stats.Sum}");
-    Console.WriteLine($"Szrebnia ocen w literah: {stats.AverageLetter}");
-
     char.TryParse(Console.ReadLine(), out q);
 } while ('q' != q);
 

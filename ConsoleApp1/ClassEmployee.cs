@@ -22,14 +22,14 @@ namespace ClassEmployee
 //                 [рахунок]
             else
             {
-//        [Wrzuc] or [вкинути]
+//          [Wrzuc], [вкинути]
 //                \/
                 throw new Exception("wybrana ocena nie istnieje");  // co jest w "", bedzie zapisane w zmianu "Exception.Message"
             }
         }
         public void AddScore(string number)
         {
-            if (float.TryParse(number, out float fl) && float.Parse(number) >= 0 && float.Parse(number) <= 100)
+            if (float.TryParse(number, out float fl) && fl >= 0 && fl <= 100)
             {
                 this.score.Add(fl);
             }
