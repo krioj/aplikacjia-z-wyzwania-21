@@ -2,8 +2,8 @@
 using ClassStatistics;
 
 char q;
-Console.WriteLine($"Podaj imie i nazwisko");
-var emp = new Employee(Console.ReadLine(), Console.ReadLine());
+Console.WriteLine($"Podaj imie, nazwisko i wiek");
+var emp = new Employee(Console.ReadLine(), Console.ReadLine(), (Console.ReadLine()));
 Console.WriteLine($"Witam {emp.Name}! (po sumy kliknij \"q\" dla wujsca)");
 Console.WriteLine("-----------------------------------------------------");
 do
@@ -21,7 +21,7 @@ do
         }//          \/
         catch (Exception)
         {
-            Console.WriteLine("Zle podana ocena");              // 
+            Console.WriteLine("Zle podana ocena");
         }
     }
     else
@@ -30,7 +30,7 @@ do
     }
     var stats = emp.GetAnEstimate();
 
-    Console.WriteLine($"Szrednia ocena: {stats.Average:N2}");   // pokazuje tylko 2 liczby po ','
+    Console.WriteLine($"Szrednia ocena: {stats.Average:N2}");                        // pokazuje tylko 2 liczby po ','
     Console.WriteLine($"Szrebnia ocen w literah: {stats.AverageLetter}");
     Console.WriteLine($"Maksymalna ocena: {stats.Max}");
     Console.WriteLine($"Minimalna ocena: {stats.Min}");

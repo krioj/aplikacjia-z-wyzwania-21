@@ -1,30 +1,35 @@
 ﻿using ClassStatistics;
+using Wyzwanie21dn;
 
 namespace ClassEmployee
 {
-    public class Employee
+    public class Employee : Person
     {
         private List<float> score = new List<float>();
-        public Employee(string name, string surname)
+        public Employee(string name)
+            : base(name)
         {
-            this.Name = name;
-            this.Surname = surname;
         }
-        public string Name { get; private set; }                // tworzenia 2-h zmianyh dla clasa 
-        public string Surname { get; private set; }
-        
+        public Employee(string name, string surname)
+                    : base(name, surname)
+        {
+        }
+        public Employee(string name, string surname, string age)
+            : base(name, surname, age)
+        {
+        }
         public void AddScore(float number)
         {
             if (number >= 0 && number <= 100)
             {
-                this.score.Add(number);                         // potencijno niebiezpiecny kod (morze byc blad)
+                this.score.Add(number);                                        // potencijno niebiezpiecny kod (morze byc blad)
             }//       /\
-//                 [рахунок]
+             //    [рахунок]
             else
             {
-//          [Wrzuc], [вкинути]
-//                \/
-                throw new Exception("wybrana ocena nie istnieje");  // co jest w "", bedzie zapisane w zmianu "Exception.Message"
+//        [Wrzuc], [вкинути]
+//               \/
+                throw new Exception("wybrana ocena nie istnieje");             // co jest w "", bedzie zapisane w zmianu "Exception.Message"
             }
         }
         public void AddScore(string number)
@@ -62,10 +67,10 @@ namespace ClassEmployee
                 }
             }
         }
-        public Statistics GetAnEstimate()         // Metoda jaka zwruci wypelniony obiekt z statystykami
+        public Statistics GetAnEstimate()                    // Metoda jaka zwruci wypelniony obiekt z statystykami
         {
             var statistic = new Statistics();
-            statistic.Average = 0;              // Avarage [середній] -> srednia wartosc
+            statistic.Average = 0;                           // Avarage [середній] -> srednia wartosc
             statistic.Max = float.MinValue;
             statistic.Min = float.MaxValue;
             statistic.Sum = 0;
@@ -80,8 +85,8 @@ namespace ClassEmployee
             statistic.Sum = statistic.Sum = this.score.Sum();
             switch (statistic.Average)
             {
-                case var average when average >= 81:   
-                    statistic.AverageLetter = 'A';     
+                case var average when average >= 81:
+                    statistic.AverageLetter = 'A';
                     break;
                 case var average when average >= 61:
                     statistic.AverageLetter = 'B';
