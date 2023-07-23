@@ -1,10 +1,10 @@
 ﻿
 namespace Wyzwanie21dn
 {
-    public abstract class Person
+    public abstract class Person                  // nie morzna zrobic "var person = new Person();" w innyh klasah/plikach
     {
         public Person()                           // name jest pszekazana pszez ":base" z clasy "Person" (tomu i nie wywala blad)
-           : this("no name")                                                       // odwoluje do klasy bazowej (w tym pszypadku do "Persone"), do zmianej "name"
+           : this("no name")                      // odwoluje do klasy bazowej (w tym pszypadku do "Persone"), do zmianej "name"
         {
         }
         public Person(string name)
@@ -24,7 +24,7 @@ namespace Wyzwanie21dn
             this.Surname = surname;
             this.Age = age;
         }
-        public string Name { get; private set; }                // tworzenia 2-h zmianyh dla clasa 
+        public string Name { get; private set; }                // tworzenia 3-h zmianyh dla clasa 
         public string Surname { get; private set; }
         public string Age { get; private set; }
     }

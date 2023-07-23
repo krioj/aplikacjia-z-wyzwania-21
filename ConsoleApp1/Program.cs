@@ -2,9 +2,9 @@
 using ClassStatistics;
 
 char q;
-Console.WriteLine($"Podaj imie, nazwisko i wiek");
+Console.WriteLine($"Podaj imie, nazwisko i wiek pracownika");
 var emp = new Employee(Console.ReadLine(), Console.ReadLine(), (Console.ReadLine()));
-Console.WriteLine($"Witam {emp.Name}! (po sumy kliknij \"q\" dla wujsca)");
+Console.WriteLine($"{emp.Name} {emp.Surname}, {emp.Age} lat");
 Console.WriteLine("-----------------------------------------------------");
 do
 {
@@ -16,9 +16,9 @@ do
         {
             for (int i = 0; i < a; i++)
             {
-                emp.AddScore(Console.ReadLine());
+                emp.AddScore(Console.ReadLine());                                   // potencijno niebiezpiecny kod (morze byc blad)
             }//[bled], [помилка]
-        }//          \/
+        }//        \/
         catch (Exception)
         {
             Console.WriteLine("Zle podana ocena");
