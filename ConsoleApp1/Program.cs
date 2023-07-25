@@ -7,10 +7,7 @@ Console.WriteLine($"--------------------------------------------------");
 emp.AddGrade("A");
 emp.AddGrade("e");
 emp.AddGrade("-4");
-emp.AddGrade("1");
-emp.AddGrade("2+");
-emp.AddGrade(25.5f);
-emp.AddGrade(59);
+
 
 var stats = emp.GetStatistics();
 
