@@ -1,5 +1,4 @@
-﻿
-using ClassStatistics;
+﻿using ClassStatistics;
 
 namespace Wyzwanie21dn
 {
@@ -11,20 +10,16 @@ namespace Wyzwanie21dn
 
         string Age { get; }
 
-        public void AddScore(float number);
+        public void AddGrade(float grade);
 
-        public void AddScore(string number);
+        public void AddGrade(string grade);
 
-        public void AddScore(char number);
+        public void AddGrade(char grade);
 
-        Statistics GetAnEstimate();                 
+        public void AddGrade(int grade);
 
-
-
-
-
-
-
-
+        public void AddGrade(double grade);
+        
+        Statistics GetStatistics();
     }
 }

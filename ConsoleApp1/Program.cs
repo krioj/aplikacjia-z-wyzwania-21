@@ -1,41 +1,23 @@
-﻿using ClassEmployee;
-using ClassStatistics;
+﻿using Wyzwanie21dn;
 
-char q;
-Console.WriteLine($"Podaj imie, nazwisko i wiek pracownika");
-var emp = new Employee(Console.ReadLine(), Console.ReadLine(), (Console.ReadLine()));
-Console.WriteLine($"{emp.Name} {emp.Surname}, {emp.Age} lat");
-Console.WriteLine("-----------------------------------------------------");
-do
-{
-    Console.WriteLine("ile ocen dodamy?");
-    if (int.TryParse(Console.ReadLine(), out int a))
-    {
-        Console.WriteLine("musis podac liczbe lub litere dla karzdej oceny");
-        try
-        {
-            for (int i = 0; i < a; i++)
-            {
-                emp.AddScore(Console.ReadLine());                                   // potencijno niebiezpiecny kod (morze byc blad)
-            }
-        }
-        catch (Exception)
-        {
-            Console.WriteLine("Zle podana ocena");
-        }
-    }
-    else
-    {
-        Console.WriteLine($"zle wpisana ilosc ({a})");
-    }
-    var stats = emp.GetAnEstimate();
+var emp = new EmployeeInFile("Artem", "Jablko", "18");
+Console.WriteLine($"{emp.Name}, {emp.Surname}, {emp.Age} lat");
+Console.WriteLine($"--------------------------------------------------");
 
-    Console.WriteLine($"Szrednia ocena: {stats.Average:N2}");                        // pokazuje tylko 2 liczby po ','
-    Console.WriteLine($"Szrebnia ocen w literah: {stats.AverageLetter}");
-    Console.WriteLine($"Maksymalna ocena: {stats.Max}");
-    Console.WriteLine($"Minimalna ocena: {stats.Min}");
-    Console.WriteLine($"Suma ocen: {stats.Sum}");
-    char.TryParse(Console.ReadLine(), out q);
-} while ('q' != q);
+emp.AddGrade("A");
+emp.AddGrade("e");
+emp.AddGrade("-4");
+emp.AddGrade("1");
+emp.AddGrade("2+");
+emp.AddGrade(25.5f);
+emp.AddGrade(59);
+
+var stats = emp.GetStatistics();
+
+Console.WriteLine($"Szrednia ocena: {stats.Average:N2}");                        // pokazuje tylko 2 liczby po ','
+Console.WriteLine($"Szrebnia ocen w literah: {stats.AverageLetter}");
+Console.WriteLine($"Maksymalna ocena: {stats.Max}");
+Console.WriteLine($"Minimalna ocena: {stats.Min}");
+Console.WriteLine($"Suma ocen: {stats.Sum}");
 
 

@@ -1,5 +1,4 @@
-﻿
-namespace Wyzwanie21dn
+﻿namespace Wyzwanie21dn
 {
     public abstract class Person                  // nie morzna zrobic "var person = new Person();" w innyh klasah/plikach
     {
