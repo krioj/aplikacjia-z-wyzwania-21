@@ -35,7 +35,7 @@ do
     Console.WriteLine($"Maksymalna ocena: {stats.Max}");
     Console.WriteLine($"Minimalna ocena: {stats.Min}");
     Console.WriteLine($"Suma ocen: {stats.Sum}");
-    q = char.Parse(Console.ReadLine());
+    char.TryParse(Console.ReadLine(), out q);
 } while ('q' != q);
 
 
