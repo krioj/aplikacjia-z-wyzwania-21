@@ -24,34 +24,33 @@ namespace ClassEmployee
             if (number >= 0 && number <= 100)
             {
                 this.score.Add(number);                                        
-            }//       /\
-             //    [рахунок]
+            }
             else
             {
                 throw new Exception("wybrana ocena nie istnieje");             // co jest w "", bedzie zapisane w zmianu "Exception.Message"
-            }//   /\
-        }//[Wrzuc], [вкинути]
+            }
+        }
         public void AddScore(string number)
         {
             switch (number)
             {
                 case "6":
-                    this.score.Add(105);
+                    this.score.Add(100);
                     break;
                 case "5":
-                    this.score.Add(85);
+                    this.score.Add(80);
                     break;
                 case "4":
-                    this.score.Add(65);
+                    this.score.Add(60);
                     break;
                 case "3":
-                    this.score.Add(45);
+                    this.score.Add(40);
                     break;
                 case "2":
-                    this.score.Add(25);
+                    this.score.Add(20);
                     break;
                 case "1":
-                    this.score.Add(5);
+                    this.score.Add(0);
                     break;
                 case "-6":
                 case "6-":
@@ -72,14 +71,6 @@ namespace ClassEmployee
                 case "-2":
                 case "2-":
                     this.score.Add(15);
-                    break;
-                case "-1":
-                case "1-":
-                    this.score.Add(-5);
-                    break;
-                case "+6":
-                case "6+":
-                    this.score.Add(105);
                     break;
                 case "+5":
                 case "5+":

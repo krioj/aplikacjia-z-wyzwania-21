@@ -17,8 +17,8 @@ do
             for (int i = 0; i < a; i++)
             {
                 emp.AddScore(Console.ReadLine());                                   // potencijno niebiezpiecny kod (morze byc blad)
-            }//[bled], [помилка]
-        }//        \/
+            }
+        }
         catch (Exception)
         {
             Console.WriteLine("Zle podana ocena");

@@ -2,7 +2,7 @@
 using ClassStatistics;
 
 namespace Wyzwanie21dn
-{// co?
+{
     public interface IEmployee                      // "public" i "private" niema w interfejsah
     {
         string Name { get; }
