@@ -24,7 +24,6 @@ namespace Wyzwanie21dn
             {
                 throw new Exception("Invalid grade value!");
             }
-
         }
 
         public override void AddGrade(int grade)
