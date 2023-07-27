@@ -4,7 +4,6 @@ namespace Wyzwanie21dn
 {
     internal class EmployeeInFile : EmployeeBase // : IEmployee
     {
-        private List<float> grades = new List<float>();
         public const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname, string age)
             : base(name, surname, age)
