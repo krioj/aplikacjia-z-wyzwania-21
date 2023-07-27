@@ -5,7 +5,7 @@ namespace Wyzwanie21dn
     internal class EmployeeInFile : EmployeeBase // : IEmployee
     {
         private List<float> grades = new List<float>();
-        public const string filename = "grades.txt";
+        public const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname, string age)
             : base(name, surname, age)
         {
@@ -13,11 +13,18 @@ namespace Wyzwanie21dn
 
         public override void AddGrade(float grade)                          // zapisywanie danyh w plik
         {
-            using (var writer = File.AppendText(filename))
+            if (grade >= 0 && grade <= 100)
             {
-                writer.Write((float)grade);
-                this.grades.Add((float)grade);
+                using (var writer = File.AppendText(fileName))
+                {
+                    writer.WriteLine(grade);
+                }
             }
+            else
+            {
+                throw new Exception("Invalid grade value!");
+            }
+
         }
 
         public override void AddGrade(int grade)
@@ -157,15 +164,15 @@ namespace Wyzwanie21dn
         {
             var grades = new List<float>();
 
-            if (File.Exists($"{filename}"))                                 // sprawdza czy plik istnieje
+            if (File.Exists(fileName))                                 // sprawdza czy plik istnieje
             {
-                using (var reader = File.OpenText(filename))                // 
+                using (var reader = File.OpenText(fileName))                // 
                 {
                     var line = reader.ReadLine();                           // pierwrsy odczyt linii (jeszli w pinii nic nie bedzie, to petla nie bedzie dzialac)
                     while (line != null)                                    // czy linija nie jest "null"-em
                     {
                         var number = float.Parse(line);                     // konwertacja linii
-                        this.AddGrade(number);                              // dodaje do tymczasowej listy "grades" ocene z pliku
+                        grades.Add(number);                              // dodaje do tymczasowej listy "grades" ocene z pliku
                         line = reader.ReadLine();                           // odczyta kolejne linije
                     }
                 }
