@@ -6,7 +6,8 @@ namespace Wyzwanie21dn
     {
         private List<float> grades = new List<float>();
         public const string filename = "grades.txt";
-        public EmployeeInFile(string name, string surname, string age) : base(name, surname, age)
+        public EmployeeInFile(string name, string surname, string age)
+            : base(name, surname, age)
         {
         }
 
@@ -14,9 +15,14 @@ namespace Wyzwanie21dn
         {
             using (var writer = File.AppendText(filename))
             {
-                writer.Write(grade);
-                this.grades.Add(grade);
+                writer.Write((float)grade);
+                this.grades.Add((float)grade);
             }
+        }
+
+        public override void AddGrade(int grade)
+        {
+            this.AddGrade((float)grade);
         }
 
         public override void AddGrade(string grade)
@@ -24,99 +30,85 @@ namespace Wyzwanie21dn
             switch (grade)
             {
                 case "6":
-                    this.AddGrade(100);
-
+                    this.AddGrade((float)100);
                     break;
                 case "5":
-                    this.AddGrade(80);
-
+                    this.AddGrade((float)80);
                     break;
                 case "4":
-                    this.AddGrade(60);
-
+                    this.AddGrade((float)60);
                     break;
                 case "3":
-                    this.AddGrade(40);
-
+                    this.AddGrade((float)40);
                     break;
                 case "2":
-                    this.AddGrade(20);
-
+                    this.AddGrade((float)20);
                     break;
                 case "1":
-                    this.AddGrade(0);
-
+                    this.AddGrade((float)0);
                     break;
                 case "-6":
                 case "6-":
-                    this.AddGrade(95);
-
+                    this.AddGrade((float)95);
                     break;
                 case "-5":
                 case "5-":
-                    this.AddGrade(75);
-
+                    this.AddGrade((float)75);
                     break;
                 case "-4":
                 case "4-":
-                    this.AddGrade(55);
-
+                    this.AddGrade((float)55);
                     break;
                 case "-3":
                 case "3-":
-                    this.AddGrade(35);
-
+                    this.AddGrade((float)35);
                     break;
                 case "-2":
                 case "2-":
-                    this.AddGrade(15);
-
-
+                    this.AddGrade((float)15);
                     break;
                 case "+5":
                 case "5+":
-                    this.AddGrade(85);
+                    this.AddGrade((float)85);
                     break;
                 case "+4":
                 case "4+":
-                    this.AddGrade(65);
+                    this.AddGrade((float)65);
                     break;
                 case "+3":
                 case "3+":
-                    this.AddGrade(45);
+                    this.AddGrade((float)45);
                     break;
                 case "+2":
                 case "2+":
-                    this.AddGrade(25);
+                    this.AddGrade((float)25);
                     break;
                 case "+1":
                 case "1+":
-                    this.AddGrade(5);
+                    this.AddGrade((float)5);
                     break;
                 case "A":
                 case "a":
-                    this.AddGrade(100);
+                    this.AddGrade((float)100);
                     break;
                 case "B":
                 case "b":
-                    this.AddGrade(80);
+                    this.AddGrade((float)80);
                     break;
                 case "C":
                 case "c":
-                    this.AddGrade(60);
+                    this.AddGrade((float)60);
                     break;
                 case "D":
                 case "d":
-                    this.AddGrade(40);
+                    this.AddGrade((float)40);
                     break;
                 case "E":
                 case "e":
-                    this.AddGrade(20);
+                    this.AddGrade((float)20);
                     break;
-
                 default:
                     throw new Exception("wybrana ocena nie istnieje");
-
             }
         }
 
@@ -126,41 +118,32 @@ namespace Wyzwanie21dn
             {
                 case 'A':
                 case 'a':
-                    this.AddGrade(100);
+                    this.AddGrade((float)100);
                     break;
                 case 'B':
                 case 'b':
-                    this.AddGrade(80);
+                    this.AddGrade((float)80);
                     break;
                 case 'C':
                 case 'c':
-                    this.AddGrade(60);
+                    this.AddGrade((float)60);
                     break;
                 case 'D':
                 case 'd':
-                    this.AddGrade(40);
+                    this.AddGrade((float)40);
                     break;
                 case 'E':
                 case 'e':
-                    this.AddGrade(20);
+                    this.AddGrade((float)20);
                     break;
                 default:
                     throw new Exception("wybrana ocena nie istnieje");
             }
         }
 
-        public override void AddGrade(int grade)
-        {
-            using (var writer = File.AppendText(filename))
-            {
-                writer.WriteLine(grade);
-                this.grades.Add(grade);
-            }
-        }
-
         public override void AddGrade(double grade)
         {
-            throw new NotImplementedException();
+            this.AddGrade((float)grade);
         }
 
         public override Statistics GetStatistics()
@@ -182,15 +165,14 @@ namespace Wyzwanie21dn
                     while (line != null)                                    // czy linija nie jest "null"-em
                     {
                         var number = float.Parse(line);                     // konwertacja linii
-                        grades.Add(number);                                 // dodaje do tymczasowej listy "grades" ocene z pliku
+                        this.AddGrade(number);                              // dodaje do tymczasowej listy "grades" ocene z pliku
                         line = reader.ReadLine();                           // odczyta kolejne linije
                     }
                 }
             }
-            return grades;                                                  
+            return grades;
         }
 
-        
         private Statistics CountStatistics(List<float> grades)              // Metoda jaka zwruci wypelniony obiekt z statystykami
         {
             var statistic = new Statistics();
@@ -206,7 +188,7 @@ namespace Wyzwanie21dn
                 statistic.Sum += grade;
             }
             statistic.Average = statistic.Average /= grades.Count;
-            statistic.Sum = statistic.Sum = grades.Sum();
+            statistic.Sum = grades.Sum();
             switch (statistic.Average)
             {
                 case var average when average >= 81:
