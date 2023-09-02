@@ -10,7 +10,10 @@ namespace Wyzwanie21dn
             this.Surname = surname;
             this.Age = age;
         }
+
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
         
+
         public string Name { get; private set; }
         public string Surname { get; private set; }
         public string Age { get; private set; }

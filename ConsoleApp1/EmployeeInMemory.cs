@@ -4,16 +4,28 @@ namespace Wyzwanie21dn
 {
     internal class EmployeeInMemory : EmployeeBase // : IEmployee
     {
+        public event GradeAddedDelegate GradeAdded;
+
         public EmployeeInMemory(string name, string surname, string age) 
             : base(name, surname, age)
         {
         }
-
         private List<float> grades = new List<float>();
 
         public override void AddGrade(float grade)                          // zapisywanie danyh w plik
         {
-            this.grades.Add(grade);
+            if (grade >= 0 && grade <= 100)
+            {
+                this.grades.Add(grade);
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
+            }
+            else
+            {
+                throw new Exception("Zle podana ocena");
+            }
         }
 
         public override void AddGrade(int grade)
@@ -145,31 +157,22 @@ namespace Wyzwanie21dn
         public override Statistics GetStatistics()                    // Metoda jaka zwruci wypelniony obiekt z statystykami
             {
                 var statistic = new Statistics();
-                statistic.Average = 0;                           // Avarage [середній] -> srednia wartosc
-                statistic.Max = float.MinValue;
-                statistic.Min = float.MaxValue;
-                statistic.Sum = 0;
-                foreach (var grade in this.grades)
-                {
-                    statistic.Max = Math.Max(statistic.Max, grade);
-                    statistic.Min = Math.Min(statistic.Min, grade);
-                    statistic.Average += grade;
-                    statistic.Sum += grade;
-                }
-                statistic.Average = statistic.Average /= this.grades.Count;
-                statistic.Sum = statistic.Sum = this.grades.Sum();
+                statistic.Average = statistic.Sum / this.grades.Count;                           // Avarage [середній] -> srednia wartosc
+                statistic.Max = this.grades.Max();
+                statistic.Min = this.grades.Min();
+                statistic.Sum = this.grades.Sum();
                 switch (statistic.Average)
                 {
-                    case var average when average >= 81:
+                    case 81:
                         statistic.AverageLetter = 'A';
                         break;
-                    case var average when average >= 61:
+                    case 61:
                         statistic.AverageLetter = 'B';
                         break;
-                    case var average when average >= 41:
+                    case 41:
                         statistic.AverageLetter = 'C';
                         break;
-                    case var average when average >= 21:
+                    case 21:
                         statistic.AverageLetter = 'D';
                         break;
                     default:

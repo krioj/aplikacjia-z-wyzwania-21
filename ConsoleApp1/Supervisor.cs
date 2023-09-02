@@ -1,4 +1,6 @@
-﻿using ClassStatistics;
+﻿
+using ClassStatistics;
+using static Wyzwanie21dn.EmployeeBase;
 
 namespace Wyzwanie21dn
 {
@@ -10,11 +12,23 @@ namespace Wyzwanie21dn
 
         public string Age => "18";
 
+        public event GradeAddedDelegate GradeAdded;
         private List<float> grades = new List<float>();
 
         public void AddGrade(float grade)                          // zapisywanie danyh w plik
         {
-            this.grades.Add(grade);   
+            if (grade >= 0 && grade <= 100)
+            {
+                this.grades.Add(grade);
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
+            }
+            else
+            {
+                throw new Exception("Zle podana ocena");
+            }
         }
 
         public void AddGrade(int grade)
@@ -145,7 +159,7 @@ namespace Wyzwanie21dn
 
         public Statistics GetStatistics()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

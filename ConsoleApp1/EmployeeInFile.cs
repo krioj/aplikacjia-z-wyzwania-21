@@ -4,7 +4,10 @@ namespace Wyzwanie21dn
 {
     internal class EmployeeInFile : EmployeeBase // : IEmployee
     {
+        public event GradeAddedDelegate GradeAdded;
+
         public const string fileName = "grades.txt";
+
         public EmployeeInFile(string name, string surname, string age)
             : base(name, surname, age)
         {
@@ -18,10 +21,14 @@ namespace Wyzwanie21dn
                 {
                     writer.WriteLine(grade);
                 }
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
-                throw new Exception("Invalid grade value!");
+                throw new Exception("Zle podana ocena");
             }
         }
 
@@ -153,25 +160,18 @@ namespace Wyzwanie21dn
 
         public override Statistics GetStatistics()
         {
-            var gradesFromFile = this.ReadGradesFromFile();
-            var result = this.CountStatistics(gradesFromFile);
-            return result;
+            return this.CountStatistics(this.ReadGradesFromFile());     // pszekazuje dane do "CountStatistics" z "ReadGradesFromFile"
         }
-
-        private List<float> ReadGradesFromFile()                          // metoda dla odczytywanie danyh z pliku
+        private List<float> ReadGradesFromFile()                        // metoda dla odczytywanie danyh z pliku
         {
             var grades = new List<float>();
-
-            if (File.Exists(fileName))                                 // sprawdza czy plik istnieje
+            if (File.Exists(fileName))                                  // sprawdza czy plik istnieje
             {
-                using (var reader = File.OpenText(fileName))                // 
+                using (var reader = File.OpenText(fileName))            // otfiera plik
                 {
-                    var line = reader.ReadLine();                           // pierwrsy odczyt linii (jeszli w pinii nic nie bedzie, to petla nie bedzie dzialac)
-                    while (line != null)                                    // czy linija nie jest "null"-em
-                    {
-                        var number = float.Parse(line);                     // konwertacja linii
-                        grades.Add(number);                              // dodaje do tymczasowej listy "grades" ocene z pliku
-                        line = reader.ReadLine();                           // odczyta kolejne linije
+                    for (string line = reader.ReadLine(); line != null; line = reader.ReadLine())  // czyta piersze linije, sprawdza czy linija nie jest nulem, czyta kolejne ocene
+                    {                                                                              // jeszli linija jest pusta to petla dalej nie idzie
+                        grades.Add(float.Parse(line));                              // dodaje i konwertuje do tymczasowej listy "grades" ocene z pliku
                     }
                 }
             }
@@ -181,31 +181,22 @@ namespace Wyzwanie21dn
         private Statistics CountStatistics(List<float> grades)              // Metoda jaka zwruci wypelniony obiekt z statystykami
         {
             var statistic = new Statistics();
-            statistic.Average = 0;                                          // Avarage [середній] -> srednia wartosc
-            statistic.Max = float.MinValue;
-            statistic.Min = float.MaxValue;
-            statistic.Sum = 0;
-            foreach (var grade in grades)
-            {
-                statistic.Max = Math.Max(statistic.Max, grade);
-                statistic.Min = Math.Min(statistic.Min, grade);
-                statistic.Average += grade;
-                statistic.Sum += grade;
-            }
-            statistic.Average = statistic.Average /= grades.Count;
+            statistic.Average = grades.Sum() / grades.Count;                                          // Avarage [середній] -> srednia wartosc
+            statistic.Max = grades.Max();
+            statistic.Min = grades.Min();
             statistic.Sum = grades.Sum();
             switch (statistic.Average)
             {
-                case var average when average >= 81:
+                case 81:
                     statistic.AverageLetter = 'A';
                     break;
-                case var average when average >= 61:
+                case 61:
                     statistic.AverageLetter = 'B';
                     break;
-                case var average when average >= 41:
+                case 41:
                     statistic.AverageLetter = 'C';
                     break;
-                case var average when average >= 21:
+                case 21:
                     statistic.AverageLetter = 'D';
                     break;
                 default:

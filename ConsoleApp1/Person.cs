@@ -24,7 +24,7 @@
             this.Age = age;
         }
 
-        public string Name { get; private set; }                // tworzenia 3-h zmianyh dla clasa 
+        public string Name { get; private set; }                // tworzenia 3-h zmianyh dla clasy
         public string Surname { get; private set; }
         public string Age { get; private set; }
     }
