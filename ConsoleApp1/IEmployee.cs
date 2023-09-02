@@ -1,4 +1,5 @@
 ﻿using ClassStatistics;
+using static Wyzwanie21dn.EmployeeBase;
 
 namespace Wyzwanie21dn
 {
@@ -19,6 +20,8 @@ namespace Wyzwanie21dn
         public void AddGrade(int grade);
 
         public void AddGrade(double grade);
+
+        event GradeAddedDelegate GradeAdded;
 
         Statistics GetStatistics();
     }

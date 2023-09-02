@@ -4,10 +4,10 @@ namespace Wyzwanie21dn
 {
     internal class EmployeeInFile : EmployeeBase // : IEmployee
     {
-        public event GradeAddedDelegate GradeAdded;
-
         public const string fileName = "grades.txt";
-
+        
+        public override event GradeAddedDelegate GradeAdded;
+        
         public EmployeeInFile(string name, string surname, string age)
             : base(name, surname, age)
         {

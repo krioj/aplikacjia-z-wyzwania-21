@@ -4,7 +4,7 @@ namespace Wyzwanie21dn
 {
     internal class EmployeeInMemory : EmployeeBase // : IEmployee
     {
-        public event GradeAddedDelegate GradeAdded;
+        public override event GradeAddedDelegate GradeAdded;
 
         public EmployeeInMemory(string name, string surname, string age)
             : base(name, surname, age)
