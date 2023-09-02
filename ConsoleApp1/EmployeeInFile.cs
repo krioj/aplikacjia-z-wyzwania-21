@@ -181,10 +181,11 @@ namespace Wyzwanie21dn
         private Statistics CountStatistics(List<float> grades)              // Metoda jaka zwruci wypelniony obiekt z statystykami
         {
             var statistic = new Statistics();
-            statistic.Average = grades.Sum() / grades.Count;                                          // Avarage [середній] -> srednia wartosc
+
             statistic.Max = grades.Max();
             statistic.Min = grades.Min();
             statistic.Sum = grades.Sum();
+            statistic.Average = grades.Sum() / grades.Count;                                          // Avarage [середній] -> srednia wartosc
             switch (statistic.Average)
             {
                 case 81:

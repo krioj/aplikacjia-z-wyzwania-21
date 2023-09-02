@@ -6,7 +6,7 @@ namespace Wyzwanie21dn
     {
         public event GradeAddedDelegate GradeAdded;
 
-        public EmployeeInMemory(string name, string surname, string age) 
+        public EmployeeInMemory(string name, string surname, string age)
             : base(name, surname, age)
         {
         }
@@ -38,7 +38,7 @@ namespace Wyzwanie21dn
             switch (grade)
             {
                 case "6":
-                    this.AddGrade((float)100); 
+                    this.AddGrade((float)100);
                     break;
                 case "5":
                     this.AddGrade((float)80);
@@ -107,7 +107,7 @@ namespace Wyzwanie21dn
                 case "c":
                     this.AddGrade((float)60);
                     break;
-                case"D":
+                case "D":
                 case "d":
                     this.AddGrade((float)40);
                     break;
@@ -155,31 +155,32 @@ namespace Wyzwanie21dn
         }
 
         public override Statistics GetStatistics()                    // Metoda jaka zwruci wypelniony obiekt z statystykami
+        {
+            var statistic = new Statistics();
+
+            statistic.Max = this.grades.Max();
+            statistic.Min = this.grades.Min();
+            statistic.Sum = this.grades.Sum();
+            statistic.Average = statistic.Sum / this.grades.Count;                           // Avarage [середній] -> srednia wartosc
+            switch (statistic.Average)
             {
-                var statistic = new Statistics();
-                statistic.Average = statistic.Sum / this.grades.Count;                           // Avarage [середній] -> srednia wartosc
-                statistic.Max = this.grades.Max();
-                statistic.Min = this.grades.Min();
-                statistic.Sum = this.grades.Sum();
-                switch (statistic.Average)
-                {
-                    case 81:
-                        statistic.AverageLetter = 'A';
-                        break;
-                    case 61:
-                        statistic.AverageLetter = 'B';
-                        break;
-                    case 41:
-                        statistic.AverageLetter = 'C';
-                        break;
-                    case 21:
-                        statistic.AverageLetter = 'D';
-                        break;
-                    default:
-                        statistic.AverageLetter = 'E';
-                        break;
-                }
-                return statistic;
+                case 81:
+                    statistic.AverageLetter = 'A';
+                    break;
+                case 61:
+                    statistic.AverageLetter = 'B';
+                    break;
+                case 41:
+                    statistic.AverageLetter = 'C';
+                    break;
+                case 21:
+                    statistic.AverageLetter = 'D';
+                    break;
+                default:
+                    statistic.AverageLetter = 'E';
+                    break;
             }
+            return statistic;
+        }
     }
 }

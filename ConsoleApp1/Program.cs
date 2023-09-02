@@ -2,7 +2,7 @@
 
 var emp = new EmployeeInMemory("Artem", "Jablko", "18");
 
-Console.WriteLine($"{emp.Name}, {emp.Surname}, {emp.Age} lat");
+Console.WriteLine($"Witam {emp.Name} w programie dla oceny pracownikuw!");
 Console.WriteLine($"--------------------------------------------------");
 
 emp.GradeAdded += EmployeeGradeAdded;
@@ -20,7 +20,7 @@ while (true)
         Console.WriteLine($"Musis podac ocene tyle raz: {r}");
         for (int i = 0; i < r; i++)
         {
-            emp.AddGrade(float.Parse(Console.ReadLine()));                          // odczyruje dane z konsoli (od urzytkownika) i konwertuje w typ danyh "float"
+            emp.AddGrade(Console.ReadLine());                          // odczyruje dane z konsoli (od urzytkownika) i konwertuje w typ danyh "float"
         }
     }
     catch (Exception)
@@ -39,4 +39,3 @@ while (true)
     if (q == "q")
         break;
 }
-

@@ -12,7 +12,7 @@
             this.Name = name;
         }
         public Person(string name, string surname)
-            :this(name, surname, "niema takiegi wieku")
+            : this(name, surname, "niema takiegi wieku")
         {
             this.Name = name;
             this.Surname = surname;

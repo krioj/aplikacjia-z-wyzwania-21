@@ -159,7 +159,31 @@ namespace Wyzwanie21dn
 
         public Statistics GetStatistics()
         {
-            
+            var statistic = new Statistics();
+
+            statistic.Max = this.grades.Max();
+            statistic.Min = this.grades.Min();
+            statistic.Sum = this.grades.Sum();
+            statistic.Average = statistic.Sum / this.grades.Count;
+            switch (statistic.Average)
+            {
+                case 81:
+                    statistic.AverageLetter = 'A';
+                    break;
+                case 61:
+                    statistic.AverageLetter = 'B';
+                    break;
+                case 41:
+                    statistic.AverageLetter = 'C';
+                    break;
+                case 21:
+                    statistic.AverageLetter = 'D';
+                    break;
+                default:
+                    statistic.AverageLetter = 'E';
+                    break;
+            }
+            return statistic;
         }
     }
 }

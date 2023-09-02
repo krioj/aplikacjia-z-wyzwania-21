@@ -5,7 +5,7 @@ namespace Wyzwanie21dn
     public interface IEmployee                      // "public" i "private" niema w interfejsah
     {
         string Name { get; }
-        
+
         string Surname { get; }
 
         string Age { get; }
@@ -19,7 +19,7 @@ namespace Wyzwanie21dn
         public void AddGrade(int grade);
 
         public void AddGrade(double grade);
-        
+
         Statistics GetStatistics();
     }
 }
