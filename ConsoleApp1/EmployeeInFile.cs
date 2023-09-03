@@ -5,9 +5,9 @@ namespace Wyzwanie21dn
     internal class EmployeeInFile : EmployeeBase // : IEmployee
     {
         public const string fileName = "grades.txt";
-        
+
         public override event GradeAddedDelegate GradeAdded;
-        
+
         public EmployeeInFile(string name, string surname, string age)
             : base(name, surname, age)
         {
@@ -181,29 +181,11 @@ namespace Wyzwanie21dn
         private Statistics CountStatistics(List<float> grades)              // Metoda jaka zwruci wypelniony obiekt z statystykami
         {
             var statistic = new Statistics();
-
-            statistic.Max = grades.Max();
-            statistic.Min = grades.Min();
-            statistic.Sum = grades.Sum();
-            statistic.Average = grades.Sum() / grades.Count;                                          // Avarage [середній] -> srednia wartosc
-            switch (statistic.Average)
+            foreach (var grade in grades)
             {
-                case 81:
-                    statistic.AverageLetter = 'A';
-                    break;
-                case 61:
-                    statistic.AverageLetter = 'B';
-                    break;
-                case 41:
-                    statistic.AverageLetter = 'C';
-                    break;
-                case 21:
-                    statistic.AverageLetter = 'D';
-                    break;
-                default:
-                    statistic.AverageLetter = 'E';
-                    break;
+                statistic.AddGrade(grade);
             }
+
             return statistic;
         }
     }

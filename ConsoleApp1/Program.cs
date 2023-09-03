@@ -1,6 +1,6 @@
 ﻿using Wyzwanie21dn;
 
-var emp = new EmployeeInMemory("Artem", "Jablko", "18");
+var emp = new EmployeeInFile("Artem", "Jablko", "18");
 
 Console.WriteLine($"Witam {emp.Name} w programie dla oceny pracownikuw!");
 Console.WriteLine($"--------------------------------------------------");
@@ -36,6 +36,7 @@ while (true)
     Console.WriteLine($"Suma ocen: {stats.Sum}");
 
     string q = Console.ReadLine();
+
     if (q == "q")
         break;
 }

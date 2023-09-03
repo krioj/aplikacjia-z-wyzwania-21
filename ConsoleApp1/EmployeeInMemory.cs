@@ -157,28 +157,9 @@ namespace Wyzwanie21dn
         public override Statistics GetStatistics()                    // Metoda jaka zwruci wypelniony obiekt z statystykami
         {
             var statistic = new Statistics();
-
-            statistic.Max = this.grades.Max();
-            statistic.Min = this.grades.Min();
-            statistic.Sum = this.grades.Sum();
-            statistic.Average = statistic.Sum / this.grades.Count;                           // Avarage [середній] -> srednia wartosc
-            switch (statistic.Average)
+            foreach (var grade in this.grades)
             {
-                case 81:
-                    statistic.AverageLetter = 'A';
-                    break;
-                case 61:
-                    statistic.AverageLetter = 'B';
-                    break;
-                case 41:
-                    statistic.AverageLetter = 'C';
-                    break;
-                case 21:
-                    statistic.AverageLetter = 'D';
-                    break;
-                default:
-                    statistic.AverageLetter = 'E';
-                    break;
+                statistic.AddGrade(grade);
             }
             return statistic;
         }
